@@ -60,7 +60,7 @@ function renderPlaces(places) {
         text.setAttribute('title', place.name);
         text.setAttribute('href', '#');
         text.setAttribute('src', './assets/marker.png');
-        text.setAttribute('scale', '15 15 15');
+        text.setAttribute('scale', '1 1 1');
 
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
