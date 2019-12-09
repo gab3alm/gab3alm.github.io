@@ -59,7 +59,7 @@ function renderPlaces(places) {
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.setAttribute('title', place.name);
         text.setAttribute('href', '#');
-        text.setAttribute('src', './assets/marker.png');
+        text.setAttribute('src', 'https://image.flaticon.com/icons/svg/1301/1301421.svg');
         text.setAttribute('scale', '1 1 1');
 
         text.addEventListener('loaded', () => {
