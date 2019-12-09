@@ -5,7 +5,9 @@ AFRAME.registerComponent('location-click', {
     init: function (){
         const data = this.data;
         const el = this.el; //a-image
-        const locationName = el.name;
+        const locationName = el.getAttribute('name');
+        console.log("LOCATION NAME: ", locationName);
+        console.log("DATA: ", data);
         el.addEventListener('click', (ev)=>{
             console.log("REGISTERED CLICK EVENT! CLICKING! :) ", locationName);
         })
