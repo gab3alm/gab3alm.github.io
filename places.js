@@ -55,16 +55,17 @@ function renderPlaces(places) {
         let longitude = place.location.lng;
 
         // add place name
-        let text = document.createElement('a-entity');
+        // let text = document.createElement('a-entity');
+        // const linkValue = `href: #; title: ${place.name}; image: #marker;`;
+        // text.setAttribute('scale', '1 1');
+        // text.setAttribute('link', linkValue);
 
-    // <a-entity link="href: index.html; title: My Homepage; image: #homeThumbnail"></a-entity>
-        const href = 'href: #;';
-        const title = `title: ${place.name};`;
-        const image = 'image: #marker;';
+        let placeMarker = document.createElement('a-link');
+        placeMarker.setAttribute('href', '#');
+        placeMarker.setAttribute('title', place.name);
+        placeMarker.setAttribute('scale', '5 5 5');
+
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        text.setAttribute('scale', '1 1');
-        text.setAttribute('link', `${href} ${title} ${image}`);
-
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
         });
