@@ -1,4 +1,5 @@
 window.onload = () => {
+    alert("TESTING SOMETHING!");
     return navigator.geolocation.getCurrentPosition(function (position) {
 
             // than use it to load from remote APIs some places nearby
