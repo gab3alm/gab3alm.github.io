@@ -6,11 +6,14 @@ AFRAME.registerComponent('location-click', {
         const data = this.data;
         const el = this.el; //a-image
         const locationName = el.getAttribute('name');
-        console.log("LOCATION NAME: ", locationName);
-        console.log("DATA: ", data);
-        el.addEventListener('click', (ev)=>{
-            console.log("REGISTERED CLICK EVENT! CLICKING! :) ", locationName);
-        })
+        el.addEventListener('mouseover', (ev)=>{
+            ev.stopPropagation();
+            document.querySelector('#main-header').innerHTML = locationName;
+        });
+        el.addEventListener('mouseleave', (ev)=>{
+            ev.stopPropagation();
+            document.querySelector('#main-header').innerHTML = 'HEADER :)';
+        });
     },
 });
 
