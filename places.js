@@ -1,5 +1,4 @@
 window.onload = () => {
-    alert("TESTING SOMETHING!");
     return navigator.geolocation.getCurrentPosition(function (position) {
 
             // than use it to load from remote APIs some places nearby
@@ -75,6 +74,7 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute('name');
+            delete window.alert;
             alert(`YOU HAVE CLICKED: ${name}`);
         });
 
