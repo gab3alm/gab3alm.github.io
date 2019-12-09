@@ -69,18 +69,6 @@ function renderPlaces(places) {
         let latitude = place.location.lat;
         let longitude = place.location.lng;
 
-        // add place name
-        // let text = document.createElement('a-entity');
-        // const linkValue = `href: #; title: ${place.name}; image: #marker;`;
-        // text.setAttribute('scale', '1 1');
-        // text.setAttribute('link', linkValue);
-
-        // let text = document.createElement('a-link');
-        // text.setAttribute('href', '#');
-        // text.setAttribute('title', place.name);
-        // text.setAttribute('scale', '5 5 5');
-        // text.setAttribute('name', `${place.name}`);
-
         let text = document.createElement('a-image');
         text.setAttribute('name', `${place.name}`);
         text.setAttribute('src', '#marker');
@@ -91,16 +79,6 @@ function renderPlaces(places) {
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
         });
-
-        // text.addEventListener('click', (ev)=>{
-        //     ev.stopPropagation();
-        //     ev.preventDefault();
-        //
-        //     console.log("YOU ARE CLICKING!");
-        //     const name = ev.target.getAttribute('name');
-        //     const mainHeader = document.querySelector('#main-header');
-        //     mainHeader.innerHTML = name;
-        // });
 
         scene.appendChild(text);
     });
