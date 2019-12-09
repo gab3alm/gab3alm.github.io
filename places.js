@@ -77,17 +77,9 @@ function renderPlaces(places) {
         });
 
         text.addEventListener('click', (ev)=>{
-            ev.stopPropagation();
-            ev.preventDefault();
             const name = ev.target.getAttribute('name');
-            const el = ev.detail.intersection && ev.detail.intersection.object.el;
-
-            if (el && el === ev.target) {
-                const mainHeader = document.querySelector('#main-header');
-                setTimeout(() => {
-                    mainHeader.innerHTML = name;
-                }, 1500);
-            }
+            const mainHeader = document.querySelector('#main-header');
+            mainHeader.innerHTML = name;
         });
 
         scene.appendChild(text);
