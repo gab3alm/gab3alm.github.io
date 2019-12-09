@@ -70,6 +70,13 @@ function renderPlaces(places) {
         text.setAttribute('src', '#marker');
         text.setAttribute('scale', '10 10');
 
+        text.addEventListener('click', (ev)=>{
+            ev.stopPropagation();
+            ev.preventDefault();
+            const name = ev.target.getAttribute('name');
+            alert("YOU HAVE CLICKED: ", name);
+        });
+
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
