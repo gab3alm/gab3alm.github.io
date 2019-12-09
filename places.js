@@ -1,3 +1,17 @@
+AFRAME.registerComponent('location-click', {
+    schema: {
+        active: String,
+    },
+    init: function (){
+        const data = this.data;
+        const el = this.el; //a-image
+        const locationName = el.name;
+        el.addEventListener('click', (ev)=>{
+            console.log("REGISTERED CLICK EVENT! CLICKING! :) ", locationName);
+        })
+    },
+});
+
 window.onload = () => {
     return navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -70,21 +84,22 @@ function renderPlaces(places) {
         text.setAttribute('name', `${place.name}`);
         text.setAttribute('src', '#marker');
         text.setAttribute('scale', '10 10');
+        text.setAttribute('location-click', 'true');
 
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
         });
 
-        text.addEventListener('click', (ev)=>{
-            ev.stopPropagation();
-            ev.preventDefault();
-
-            console.log("YOU ARE CLICKING!");
-            const name = ev.target.getAttribute('name');
-            const mainHeader = document.querySelector('#main-header');
-            mainHeader.innerHTML = name;
-        });
+        // text.addEventListener('click', (ev)=>{
+        //     ev.stopPropagation();
+        //     ev.preventDefault();
+        //
+        //     console.log("YOU ARE CLICKING!");
+        //     const name = ev.target.getAttribute('name');
+        //     const mainHeader = document.querySelector('#main-header');
+        //     mainHeader.innerHTML = name;
+        // });
 
         scene.appendChild(text);
     });
