@@ -57,7 +57,7 @@ function renderPlaces(places) {
         // add place name
         let text = document.createElement('a-link');
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        text.setAttribute('image', 'https://image.flaticon.com/icons/svg/1301/1301421.svg');
+        text.setAttribute('src', 'https://image.flaticon.com/icons/svg/1301/1301421.svg');
         text.setAttribute('title', place.name);
         text.setAttribute('href', '#');
         text.setAttribute('scale', '1 1 1');
