@@ -6,13 +6,13 @@ AFRAME.registerComponent('location-click', {
         const data = this.data;
         const el = this.el; //a-image
         const locationName = el.getAttribute('name');
-        el.addEventListener('mouseover', (ev)=>{
+        el.addEventListener('mouseenter', (ev)=>{
             ev.stopPropagation();
             document.querySelector('#main-header').innerHTML = locationName;
         });
         el.addEventListener('mouseleave', (ev)=>{
             ev.stopPropagation();
-            document.querySelector('#main-header').innerHTML = 'HEADER :)';
+            document.querySelector('#main-header').innerHTML = 'HEADER';
         });
     },
 });
