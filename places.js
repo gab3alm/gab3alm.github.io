@@ -55,12 +55,12 @@ function renderPlaces(places) {
         let longitude = place.location.lng;
 
         // add place name
-        let text = document.createElement('a-link');
+        let text = document.createElement('a-image');
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.setAttribute('src', 'https://image.flaticon.com/icons/svg/1301/1301421.svg');
-        text.setAttribute('title', place.name);
-        text.setAttribute('href', '#');
-        text.setAttribute('scale', '1 1 1');
+        text.setAttribute('name', place.name);
+        text.setAttribute('scale', '1 1');
+        // text.setAttribute('href', '#');
 
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
