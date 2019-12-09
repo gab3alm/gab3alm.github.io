@@ -66,21 +66,27 @@ function renderPlaces(places) {
         // text.setAttribute('scale', '5 5 5');
 
         let text = document.createElement('a-image');
-        text.setAttribute('name', place.name);
+        text.setAttribute('name', `${place.name}`);
         text.setAttribute('src', '#marker');
         text.setAttribute('scale', '10 10');
+
+        text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+        text.addEventListener('loaded', () => {
+            window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+        });
 
         text.addEventListener('click', (ev)=>{
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute('name');
-            const mainHeader = document.getElementById("main-header");
-            mainHeader.innerHTML = name;
-        });
+            const el = ev.detail.intersection && ev.detail.intersection.object.el;
 
-        text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        text.addEventListener('loaded', () => {
-            window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+            if (el && el === ev.target) {
+                const mainHeader = document.getElementById("main-header");
+                setTimeout(() => {
+                    mainHeader.innerHTML = name;
+                }, 1500);
+            }
         });
 
         scene.appendChild(text);
