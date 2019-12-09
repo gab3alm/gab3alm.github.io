@@ -74,7 +74,7 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute('name');
-            alert("YOU HAVE CLICKED: ", name);
+            alert(`YOU HAVE CLICKED: ${name}`);
         });
 
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
