@@ -1,5 +1,6 @@
 window.onload = () => {
     document.querySelector('#main-header').innerHTML = 'YO!';
+    console.log("HELLO THERE!");
     return navigator.geolocation.getCurrentPosition(function (position) {
 
             // than use it to load from remote APIs some places nearby
