@@ -1,6 +1,4 @@
 window.onload = () => {
-    document.querySelector('#main-header').innerHTML = 'OVERWRITING TEXT!';
-    console.log("HELLO THERE!");
     return navigator.geolocation.getCurrentPosition(function (position) {
 
             // than use it to load from remote APIs some places nearby
@@ -79,6 +77,7 @@ function renderPlaces(places) {
         });
 
         text.addEventListener('click', (ev)=>{
+            console.log("YOU ARE CLICKING!");
             const name = ev.target.getAttribute('name');
             const mainHeader = document.querySelector('#main-header');
             mainHeader.innerHTML = name;
