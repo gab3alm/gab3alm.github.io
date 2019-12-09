@@ -1,5 +1,5 @@
 window.onload = () => {
-    document.querySelector('#main-header').innerHTML = 'YO!';
+    document.querySelector('#main-header').innerHTML = 'OVERWRITING TEXT!';
     console.log("HELLO THERE!");
     return navigator.geolocation.getCurrentPosition(function (position) {
 
