@@ -95,10 +95,10 @@ div.debug {
     padding: 0 5%;
 }
 
-.section-label {
+#section-label {
     color: white;
 }
 
-.section-description {
+#section-description {
     color: rgba(255, 255, 255, .75);
 }

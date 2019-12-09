@@ -6,9 +6,12 @@ AFRAME.registerComponent('location-click', {
         const data = this.data;
         const el = this.el; //a-image
         const locationName = el.getAttribute('name');
+        const locationAddress = el.getAttribute('data-addr');
         el.addEventListener('mouseenter', (ev)=>{
             ev.stopPropagation();
             document.querySelector('#main-header').innerHTML = locationName;
+            document.querySelector('#section-label').innerHTML = "Address";
+            document.querySelector('#section-description').innerHTML = locationAddress;
         });
     },
 });
@@ -66,14 +69,21 @@ function dynamicLoadPlaces(position) {
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
     places.forEach((place) => {
-        let latitude = place.location.lat;
-        let longitude = place.location.lng;
+        const { location = {} } = place;
+        const {
+            formattedAddress,
+            lat: latitude,
+            lng: longitude,
+        } = location;
+
+        const address = formattedAddress.join(" ");
 
         let text = document.createElement('a-image');
         text.setAttribute('name', `${place.name}`);
         text.setAttribute('src', '#marker');
         text.setAttribute('scale', '10 10');
         text.setAttribute('location-click', 'true');
+        text.setAttribute('data-addr', address);
 
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.addEventListener('loaded', () => {
