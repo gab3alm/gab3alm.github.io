@@ -55,13 +55,15 @@ function renderPlaces(places) {
         let longitude = place.location.lng;
 
         // add place name
-        let text = document.createElement('a-link');
+        let text = document.createElement('a-entity');
 
+    // <a-entity link="href: index.html; title: My Homepage; image: #homeThumbnail"></a-entity>
+        const href = 'href: #;';
+        const title = `title: ${place.name};`;
+        const image = 'image: #marker;';
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        text.setAttribute('href', '#');
-        text.setAttribute('image', '#marker');
-        text.setAttribute('scale', '1 1 1');
-        text.setAttribute('title', place.name);
+        text.setAttribute('scale', '1 1');
+        text.setAttribute('link', `${href} ${title} ${image}`);
 
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
