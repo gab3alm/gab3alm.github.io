@@ -60,15 +60,16 @@ function renderPlaces(places) {
         // text.setAttribute('scale', '1 1');
         // text.setAttribute('link', linkValue);
 
-        // let text = document.createElement('a-link');
-        // text.setAttribute('href', '#');
-        // text.setAttribute('title', place.name);
-        // text.setAttribute('scale', '5 5 5');
-
-        let text = document.createElement('a-image');
+        let text = document.createElement('a-link');
+        text.setAttribute('href', '#');
+        text.setAttribute('title', place.name);
+        text.setAttribute('scale', '5 5 5');
         text.setAttribute('name', `${place.name}`);
-        text.setAttribute('src', '#marker');
-        text.setAttribute('scale', '10 10');
+
+        // let text = document.createElement('a-image');
+        // text.setAttribute('name', `${place.name}`);
+        // text.setAttribute('src', '#marker');
+        // text.setAttribute('scale', '10 10');
 
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.addEventListener('loaded', () => {
