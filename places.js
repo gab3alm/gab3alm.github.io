@@ -50,7 +50,6 @@ function dynamicLoadPlaces(position) {
 
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
-
     places.forEach((place) => {
         let latitude = place.location.lat;
         let longitude = place.location.lng;
@@ -60,6 +59,7 @@ function renderPlaces(places) {
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.setAttribute('title', place.name);
         text.setAttribute('href', '#');
+        text.setAttribute('src', './assets/marker.png');
         text.setAttribute('scale', '15 15 15');
 
         text.addEventListener('loaded', () => {
