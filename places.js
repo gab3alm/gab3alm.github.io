@@ -10,10 +10,6 @@ AFRAME.registerComponent('location-click', {
             ev.stopPropagation();
             document.querySelector('#main-header').innerHTML = locationName;
         });
-        el.addEventListener('mouseleave', (ev)=>{
-            ev.stopPropagation();
-            document.querySelector('#main-header').innerHTML = 'HEADER';
-        });
     },
 });
 
