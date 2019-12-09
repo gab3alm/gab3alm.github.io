@@ -74,8 +74,8 @@ function renderPlaces(places) {
             ev.stopPropagation();
             ev.preventDefault();
             const name = ev.target.getAttribute('name');
-            delete window.alert;
-            alert(`YOU HAVE CLICKED: ${name}`);
+            const mainHeader = document.getElementById("main-header");
+            mainHeader.innerHTML = name;
         });
 
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
