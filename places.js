@@ -68,6 +68,7 @@ function renderPlaces(places) {
         let text = document.createElement('a-image');
         text.setAttribute('name', place.name);
         text.setAttribute('src', '#marker');
+        text.setAttribute('scale', '10 10');
 
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.addEventListener('loaded', () => {
