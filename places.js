@@ -9,15 +9,11 @@ AFRAME.registerComponent('location-click', {
         const data = this.data;
         const el = this.el; //a-image
         const locationName = el.getAttribute('name');
-        const locationAddress = el.getAttribute('data-addr');
         const businessCategory = el.getAttribute('data-category');
         el.addEventListener('mouseenter', (ev)=>{
             ev.stopPropagation();
-            document.querySelector("#information-container").classList.remove('hidden');
             document.querySelector('#main-header').innerHTML = locationName;
             document.querySelector('#subheader').innerHTML = businessCategory;
-            document.querySelector('#section-label').innerHTML = "Address";
-            document.querySelector('#section-description').innerHTML = locationAddress;
         });
     },
 });
