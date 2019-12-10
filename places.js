@@ -1,6 +1,8 @@
 // const merchantSearchUrl = 'http://internal-bri-merchant-data-service-stage-52267917.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
 // const merchantSearchUrl = 'http://internal-bri-merchant-data-service-prod-959860708.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
 
+populateReviews(reviews.reviews);
+
 AFRAME.registerComponent('location-click', {
     schema: {
         active: String,
@@ -14,6 +16,7 @@ AFRAME.registerComponent('location-click', {
             ev.stopPropagation();
             document.querySelector('#main-header').innerHTML = locationName;
             document.querySelector('#subheader').innerHTML = businessCategory;
+            document.querySelector('#reviews-container').classList.remove('hidden');
         });
     },
 });
@@ -54,7 +57,7 @@ function dynamicLoadPlaces(position) {
         &radius=${params.radius}
         &client_id=${params.clientId}
         &client_secret=${params.clientSecret}
-        &limit=30
+        &limit=1
         &v=${params.version}`;
     return fetch(endpoint)
         .then((res) => {
@@ -79,10 +82,11 @@ function getPlaceInfo(locationId) {
     let corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
     // Foursquare API
-    let endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/${locationId}?
+    let endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/${locationId}/tips?
         &client_id=${params.clientId}
         &client_secret=${params.clientSecret}
-        &v=${params.version}`;
+        &v=${params.version}
+        &limit=10`;
 
     return fetch('').then(data => data);
     // return fetch(endpoint)
@@ -112,6 +116,7 @@ function renderPlaces(places) {
 
         getPlaceInfo(id).then(data => {
             console.log("place: ", place);
+            console.log("DATA: ", data);
             let text = document.createElement('a-image');
             text.setAttribute('name', `${place.name}`);
             text.setAttribute('src', '#marker');
@@ -127,5 +132,14 @@ function renderPlaces(places) {
 
             scene.appendChild(text);
         });
+    });
+}
+
+function populateReviews(reviews) {
+    const reviewsContainer = document.querySelector("#reviews-container");
+    reviews.forEach(({ text }) => {
+        const reviewContainer = document.createElement('div');
+        reviewContainer.innerHTML = text;
+        reviewsContainer.appendChild(reviewContainer);
     });
 }

@@ -110,8 +110,32 @@ div.debug {
     justify-content: center;
 }
 
+#reviews-container {
+    padding: 10px;
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.review-container {
+    background: rgba(24, 153, 255, 0.8);
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.description {
+    color: rgba(255, 255, 255, .5);
+    margin: 5px;
+    text-align: left;
+}
+
 .rating-star {
-    height: 35px;
+    height: 25px;
     margin: 10px;
 }
 
