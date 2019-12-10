@@ -73,6 +73,7 @@ function dynamicLoadPlaces(position) {
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
     places.forEach((place) => {
+        console.log("PLACE: ", place);
         const { location = {}, name: locationName} = place;
         const {
             formattedAddress,

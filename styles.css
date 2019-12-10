@@ -85,6 +85,7 @@ div.debug {
     top: 0;
     left: 0;
     text-align: center;
+    z-index: 99999;
 }
 
 #main-header {
@@ -99,24 +100,19 @@ div.debug {
     color: rgba(255, 255, 255, .5);
     margin: 0;
     padding: 0;
+    margin-bottom: 10px;
 }
 
-#information-container {
-    background-color: rgba(255, 255, 255, .25);
-    bottom: 0;
-    height: 300px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    padding: 0 5%;
+#rating-container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-#section-label {
-    color: white;
-}
-
-#section-description {
-    color: rgba(255, 255, 255, .75);
+.rating-star {
+    height: 35px;
+    margin: 10px;
 }
 
 .hidden {
