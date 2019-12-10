@@ -1,8 +1,6 @@
 // const merchantSearchUrl = 'http://internal-bri-merchant-data-service-stage-52267917.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
 // const merchantSearchUrl = 'http://internal-bri-merchant-data-service-prod-959860708.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
 
-populateReviews(reviews.reviews);
-
 AFRAME.registerComponent('location-click', {
     schema: {
         active: String,
@@ -115,8 +113,6 @@ function renderPlaces(places) {
         const address = formattedAddress.join(" ");
 
         getPlaceInfo(id).then(data => {
-            console.log("place: ", place);
-            console.log("DATA: ", data);
             let text = document.createElement('a-image');
             text.setAttribute('name', `${place.name}`);
             text.setAttribute('src', '#marker');
@@ -132,14 +128,5 @@ function renderPlaces(places) {
 
             scene.appendChild(text);
         });
-    });
-}
-
-function populateReviews(reviews) {
-    const reviewsContainer = document.querySelector("#reviews-container");
-    reviews.forEach(({ text }) => {
-        const reviewContainer = document.createElement('div');
-        reviewContainer.innerHTML = text;
-        reviewsContainer.appendChild(reviewContainer);
     });
 }
