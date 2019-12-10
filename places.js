@@ -10,10 +10,12 @@ AFRAME.registerComponent('location-click', {
         const el = this.el; //a-image
         const locationName = el.getAttribute('name');
         const locationAddress = el.getAttribute('data-addr');
+        const businessCategory = el.getAttribute('data-category');
         el.addEventListener('mouseenter', (ev)=>{
             ev.stopPropagation();
             document.querySelector("#information-container").classList.remove('hidden');
             document.querySelector('#main-header').innerHTML = locationName;
+            document.querySelector('#subheader').innerHTML = businessCategory;
             document.querySelector('#section-label').innerHTML = "Address";
             document.querySelector('#section-description').innerHTML = locationAddress;
         });
@@ -70,11 +72,39 @@ function dynamicLoadPlaces(position) {
         })
 };
 
+function getPlaceInfo(locationId) {
+    let params = {
+        clientId: 'FKBJU1DV15K3RC1IZZC13MPECNSFKNYFVHN3IX521GVJXTX4',
+        clientSecret: 'HDSCXQWOTR3XOVACJACSSPNJIR2KJSVG3TJOR0A0KFR2NUAX',
+        version: '20300101',    // foursquare versioning, required but unuseful for this demo
+    };
+
+    // CORS Proxy to avoid CORS problems
+    let corsProxy = 'https://cors-anywhere.herokuapp.com/';
+
+    // Foursquare API
+    let endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/${locationId}?
+        &client_id=${params.clientId}
+        &client_secret=${params.clientSecret}
+        &v=${params.version}`;
+
+    return fetch(endpoint)
+        .then((res) => {
+            return res.json()
+                .then((resp) => {
+                    return resp.response;
+                })
+        })
+        .catch((err) => {
+            console.error('Error with places API', err);
+        });
+}
+
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
     places.forEach((place) => {
-        console.log("PLACE: ", place);
-        const { location = {}, name: locationName} = place;
+        const { id, location = {}, name: locationName} = place;
+
         const {
             formattedAddress,
             lat: latitude,
@@ -83,18 +113,31 @@ function renderPlaces(places) {
 
         const address = formattedAddress.join(" ");
 
-        let text = document.createElement('a-image');
-        text.setAttribute('name', `${place.name}`);
-        text.setAttribute('src', '#marker');
-        text.setAttribute('scale', '10 10');
-        text.setAttribute('location-click', 'true');
-        text.setAttribute('data-addr', address);
+        getPlaceInfo(id).then(data => {
+            console.log("ID: ", id, " DATA: ", data);
+            const {
+                venue: {
+                    categories : {
+                        name: businessCategory,
+                    },
+                },
+            } = data;
 
-        text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-        text.addEventListener('loaded', () => {
-            window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+
+            let text = document.createElement('a-image');
+            text.setAttribute('name', `${place.name}`);
+            text.setAttribute('src', '#marker');
+            text.setAttribute('scale', '10 10');
+            text.setAttribute('location-click', 'true');
+            text.setAttribute('data-addr', address);
+            text.setAttribute('data-category', businessCategory);
+
+            text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+            text.addEventListener('loaded', () => {
+                window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+            });
+
+            scene.appendChild(text);
         });
-
-        scene.appendChild(text);
     });
 }

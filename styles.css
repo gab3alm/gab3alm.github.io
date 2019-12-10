@@ -96,7 +96,7 @@ div.debug {
     margin-bottom: 0;
 }
 
-.subheader {
+#subheader {
     color: rgba(255, 255, 255, .5);
     margin: 0;
     padding: 0;
