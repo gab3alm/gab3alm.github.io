@@ -111,14 +111,9 @@ function renderPlaces(places) {
 
         getPlaceInfo(id).then(data => {
             console.log("ID: ", id, " DATA: ", data);
-            const {
-                venue: {
-                    categories : {
-                        name: businessCategory,
-                    },
-                },
-            } = data;
-
+            const { venue = {} } = data;
+            const { categories = {} } = venue;
+            const { name: businessCategory = '' } = categories;
 
             let text = document.createElement('a-image');
             text.setAttribute('name', `${place.name}`);
