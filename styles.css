@@ -148,7 +148,7 @@ div.debug {
 }
 
 .description {
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, .75);
     margin: 5px;
     text-align: left;
 }
