@@ -77,12 +77,28 @@ div.debug {
 /* --------------------------------- */
 /* REGULAR STYLES */
 /* --------------------------------- */
-#main-header {
-    color: white;
-    left: 0;
-    margin-left: 10px;
+#header-container {
+    background: linear-gradient(253.24deg, #2485D2 22.4%, rgba(36, 133, 210, 0) 133.36%);
+    height: 80px;
+    width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
+    text-align: center;
+}
+
+#main-header {
+    color: white;
+    font-family: Avenir;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.subheader {
+    color: rgba(255, 255, 255, .5);
+    margin: 0;
+    padding: 0;
 }
 
 #information-container {
