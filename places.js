@@ -14,7 +14,6 @@ AFRAME.registerComponent('location-click', {
             ev.stopPropagation();
             document.querySelector('#main-header').innerHTML = locationName;
             document.querySelector('#subheader').innerHTML = businessCategory;
-            document.querySelector('#reviews-container').classList.remove('hidden');
         });
     },
 });
