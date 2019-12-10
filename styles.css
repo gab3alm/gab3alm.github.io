@@ -78,7 +78,7 @@ div.debug {
 /* REGULAR STYLES */
 /* --------------------------------- */
 #header-container {
-    background: linear-gradient(253.24deg, #2485D2 22.4%, rgba(36, 133, 210, 0) 133.36%);
+    background: #2E8ADB;
     height: 80px;
     width: 100%;
     position: absolute;
@@ -126,6 +126,25 @@ div.debug {
     display: flex;
     flex-direction: column;
     align-content: center;
+}
+
+#btns-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.reviews-toggle {
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #2485D2;
+    margin: 10px;
+}
+
+.reviews-icon {
+    height: 50px;
+    width: 50px;
 }
 
 .description {

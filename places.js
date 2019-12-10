@@ -130,3 +130,13 @@ function renderPlaces(places) {
         });
     });
 }
+
+function toggleReviews() {
+    const reviewsContainer = document.querySelector("#reviews-container");
+    const classes = reviewsContainer.classList;
+    if (classes.contains("hidden")) {
+        reviewsContainer.classList.remove("hidden");
+    }else{
+        reviewsContainer.classList.add("hidden");
+    }
+}
