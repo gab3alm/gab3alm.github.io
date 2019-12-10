@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/gab3alm/gab3alm.github.io/issues"
   },
-  "homepage": "https://github.com/gab3alm/gab3alm.github.io#readme"
+  "homepage": "https://github.com/gab3alm/gab3alm.github.io#readme",
+  "dependencies": {
+    "xml-js": "^1.6.11"
+  }
 }

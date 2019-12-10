@@ -85,7 +85,7 @@ div.debug {
     top: 0;
 }
 
-.information-container {
+#information-container {
     background-color: rgba(255, 255, 255, .25);
     bottom: 0;
     height: 300px;
@@ -101,4 +101,8 @@ div.debug {
 
 #section-description {
     color: rgba(255, 255, 255, .75);
+}
+
+.hidden {
+    display: none;
 }

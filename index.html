@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AR Experimenting</title>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
     <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
@@ -17,10 +18,10 @@
 <body>
     <link rel="stylesheet" href="./styles.css">
     <script src="places.js"></script>
-    <h1 id="main-header">Merchant Name</h1>
-    <div class="information-container">
-        <h4 id="section-label">Section Label</h4>
-        <p id="section-description">Sample section description</p>
+    <h1 id="main-header"></h1>
+    <div id="information-container" class="hidden">
+        <h4 id="section-label"></h4>
+        <p id="section-description"></p>
     </div>
     <a-scene
             vr-mode-ui="enabled: false"
@@ -29,7 +30,10 @@
         <a-assets>
             <img id="marker" src="https://image.flaticon.com/icons/svg/1301/1301421.svg">
         </a-assets>
-        <a-camera gps-camera rotation-reader><a-cursor></a-cursor></a-camera>
+        <a-camera gps-camera rotation-reader>
+            <a-cursor>
+            </a-cursor>
+        </a-camera>
     </a-scene>
 </body>
 </html>

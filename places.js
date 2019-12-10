@@ -1,4 +1,5 @@
-const merchantSearchUrl = 'http://internal-bri-merchant-data-service-stage-52267917.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
+// const merchantSearchUrl = 'http://internal-bri-merchant-data-service-stage-52267917.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
+// const merchantSearchUrl = 'http://internal-bri-merchant-data-service-prod-959860708.us-west-2.elb.amazonaws.com:7188/merchant/search?page=0&pageSize=20&query=';
 
 AFRAME.registerComponent('location-click', {
     schema: {
@@ -11,6 +12,7 @@ AFRAME.registerComponent('location-click', {
         const locationAddress = el.getAttribute('data-addr');
         el.addEventListener('mouseenter', (ev)=>{
             ev.stopPropagation();
+            document.querySelector("#information-container").classList.remove('hidden');
             document.querySelector('#main-header').innerHTML = locationName;
             document.querySelector('#section-label').innerHTML = "Address";
             document.querySelector('#section-description').innerHTML = locationAddress;
@@ -54,7 +56,7 @@ function dynamicLoadPlaces(position) {
         &radius=${params.radius}
         &client_id=${params.clientId}
         &client_secret=${params.clientSecret}
-        &limit=1
+        &limit=10
         &v=${params.version}`;
     return fetch(endpoint)
         .then((res) => {
@@ -77,12 +79,6 @@ function renderPlaces(places) {
             lat: latitude,
             lng: longitude,
         } = location;
-
-        fetch(`${merchantSearchUrl}InkCar`)
-            .then(response => response.json())
-            .then(response => {
-                console.log("RESPONSE: ", response);
-            });
 
         const address = formattedAddress.join(" ");
 
