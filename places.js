@@ -54,7 +54,7 @@ function dynamicLoadPlaces(position) {
         &radius=${params.radius}
         &client_id=${params.clientId}
         &client_secret=${params.clientSecret}
-        &limit=10
+        &limit=1
         &v=${params.version}`;
     return fetch(endpoint)
         .then((res) => {
@@ -84,23 +84,24 @@ function getPlaceInfo(locationId) {
         &client_secret=${params.clientSecret}
         &v=${params.version}`;
 
-    return fetch(endpoint)
-        .then((res) => {
-            return res.json()
-                .then((resp) => {
-                    return resp.response;
-                })
-        })
-        .catch((err) => {
-            console.error('Error with places API', err);
-        });
+    return fetch('').then(data => data);
+    // return fetch(endpoint)
+    //     .then((res) => {
+    //         return res.json()
+    //             .then((resp) => {
+    //                 return resp.response;
+    //             })
+    //     })
+    //     .catch((err) => {
+    //         console.error('Error with places API', err);
+    //     });
 }
 
 function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
     places.forEach((place) => {
-        const { id, location = {}, name: locationName} = place;
-
+        const { id, location = {}, name: locationName, categories} = place;
+        const { name: businessCategory } = categories[0];
         const {
             formattedAddress,
             lat: latitude,
@@ -110,11 +111,7 @@ function renderPlaces(places) {
         const address = formattedAddress.join(" ");
 
         getPlaceInfo(id).then(data => {
-            console.log("ID: ", id, " DATA: ", data);
-            const { venue = {} } = data;
-            const { categories = {} } = venue;
-            const { name: businessCategory = '' } = categories;
-
+            console.log("place: ", place);
             let text = document.createElement('a-image');
             text.setAttribute('name', `${place.name}`);
             text.setAttribute('src', '#marker');
